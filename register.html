@@ -163,7 +163,7 @@
                             <label for="date">मिती :</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" id="date" name="date" required placeholder="YYYY-MM-DD">
+                            <input type="number" id="date" name="date" required placeholder="YYYY-MM-DD">
                         </div>
                     </div>
                     <br>
@@ -259,6 +259,7 @@
                 if (data.result === 'success') {
                     alert('Form submitted successfully!');
                     document.getElementById('myForm').reset();
+                    window.location.href='index.html';
                 } else {
                     alert('Error submitting form: ' + data.message);
                 }
