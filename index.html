@@ -31,34 +31,38 @@
         }
 
         .container-fluid {
+            
             width: 100%;
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-     
+
         }
 
         .container {
-            margin-top: 30px;
+            margin-top: 100px;
             max-width: 380px;
-            padding: 15px 15px;
+            padding: 25px 15px;
             border-radius: 10px;
             background-color: var(--body-color);
             box-shadow: var(--box-shadow);
         }
-        .view h1{
+
+        h1 {
             font-size: 35px;
             font-weight: 800;
             text-align: center;
             margin-bottom: 20px;
             color: var(--header);
         }
+
         .view label {
             font-size: 25px;
             color: var(--header);
         }
-        .view select{
+
+        .view select {
             width: 70%;
             margin-left: 10px;
             min-height: 30px;
@@ -68,7 +72,8 @@
             border-radius: 5px;
             box-shadow: var(--box-shadow);
         }
-        .view select:focus{
+
+        .view select:focus {
             color: #1A73E8;
             box-shadow: var(--box-inset-shadow);
         }
@@ -91,6 +96,7 @@
             <ul class="header-main">
                 <li><a href="index.html" class="active">बिबरन </a></li>
                 <li><a href="register.html">नया दर्ता</a></li>
+                <li><a href="given.html">दिएको</a></li>
                 <li><a href="final.html">समाप्त </a></li>
                 <li><a href="https://www.ramkrishna4234.com.np/"> Logout</a></li>
 
@@ -116,31 +122,58 @@
             <div class="view">
 
                 <h1>रेकर्ड</h1>
-                <label for="nameDropdown">Name:</label>
+                <label for="nameDropdown">नाम  :</label>
                 <select id="nameDropdown">
                     <option value="">Select a name</option>
                 </select>
 
 
-                <table id="table1" class="table table-hover" style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
+                <table id="table1" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
                     <!-- Data will be populated here -->
                 </table>
 
 
-                <table id="table2" class="table table-hover" style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
+                <table id="table2" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
                     <!-- Data will be populated here -->
                 </table>
 
                 <!-- <h2>ब्याज चलेको </h2> -->
-                <table id="table3" class="table table-hover" style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
+                <table id="table3" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
                     <!-- Data will be populated here -->
                 </table>
 
 
-                <table id="table4" class="table table-hover" style="border: 1px solid var(--hover-txt-color); font-size: 18px;">
+                <table id="table4" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
                     <!-- Data will be populated here -->
                 </table>
 
+
+
+
+            </div>
+        </div>
+
+       
+       
+    </div>
+
+    <div class="container-fluid" style="margin-top: -50px; margin-bottom: 50px;">
+        <div class="container">
+            <h1>रकम देको </h1>
+            <div class="view">
+                <!-- New table for Date and Rs -->
+                <table id="table5" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
+                    <!-- Data will be populated here -->
+                </table>
+                <table id="table6" class="table table-hover"
+                    style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
+                    <!-- Data will be populated here -->
+                </table>
             </div>
         </div>
     </div>
@@ -202,7 +235,7 @@
 
         //for view table
         function populateDropdown() {
-            fetch('https://script.google.com/macros/s/AKfycbxS5qUMpXpjfOPgx8NYY43KEDVlB2hcM3MKBq5zMtZPae-c2ZyiLhq6nYLSIYX-rYHH/exec')
+            fetch('https://script.google.com/macros/s/AKfycbxH6Hrt69u0RAbEslQBJ_8L4GSwfDXrMmSRXxw6hGF6wYP9r1FBMdrMpY8_V_L6KU-s/exec')
                 .then(response => response.json())
                 .then(data => {
                     const dropdown = document.getElementById('nameDropdown');
@@ -215,36 +248,65 @@
                 })
                 .catch(error => console.error('Error fetching names:', error));
         }
-        function formatNumber(number) {
-            return number.toString().split('.')[0]; // Remove the decimal part
-        }
+
+
 
         function displayData() {
             const selectedName = document.getElementById('nameDropdown').value;
             if (selectedName) {
-                fetch(`https://script.google.com/macros/s/AKfycbxS5qUMpXpjfOPgx8NYY43KEDVlB2hcM3MKBq5zMtZPae-c2ZyiLhq6nYLSIYX-rYHH/exec?name=${encodeURIComponent(selectedName)}`)
+                fetch(`https://script.google.com/macros/s/AKfycbxH6Hrt69u0RAbEslQBJ_8L4GSwfDXrMmSRXxw6hGF6wYP9r1FBMdrMpY8_V_L6KU-s/exec?name=${encodeURIComponent(selectedName)}`)
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('table1').innerHTML = `
-                            <tr><th>नाम </th><th>मुल्धन</th><th>ब्याज दर </th></tr>
-                            <tr><td>${data.A}</td><td>${data.B}</td><td>${data.C}</td></tr>
-                        `;
+                    <tr><th>नाम </th><th>मुल्धन</th><th>ब्याज दर </th></tr>
+                    <tr><td>${data.A}</td><td>${data.B}</td><td>${data.C}</td></tr>
+                `;
                         document.getElementById('table2').innerHTML = `
-                            <tr><th>रकम लिएको </th><th>रकम बुझौने </th></tr>
-                            <tr><td>${data.P}</td><td>${data.Q}</td></tr>
-                        `;
+                    <tr><th>रकम लिएको </th><th>रकम बुझौने </th></tr>
+                    <tr><td>${data.P}</td><td>${data.Q}</td></tr>
+                `;
                         document.getElementById('table3').innerHTML = `
-                            <tr><th>साल </th><th>महिना </th><th>दिन</th></tr>
-                            <tr><td>${data.F}</td><td>${data.G}</td><td>${data.H}</td></tr>
-                        `;
+                    <tr><th>साल </th><th>महिना </th><th>दिन</th></tr>
+                    <tr><td>${data.F}</td><td>${data.G}</td><td>${data.H}</td></tr>
+                `;
                         document.getElementById('table4').innerHTML = `
-                            <tr><th>जम्मा ब्याज</th><th>जम्मा रकम </th></tr>
-                            <tr><td>${data.N}</td><td>${data.O}</td></tr>
-                        `;
+                    <tr><th>जम्मा ब्याज</th><th>जम्मा रकम </th></tr>
+                    <tr><td>${data.N}</td><td>${data.O}</td></tr>
+                `;
+                        document.getElementById('table5').innerHTML = `
+                    <tr><th>दिएको मिती </th><th>रकम </th></tr>            
+                    ${data.table5.map(pair => `<tr><td>${pair[0]}</td><td>${pair[1]}</td></tr>`).join('')}
+                `;
+                        document.getElementById('table6').innerHTML = `
+                    <tr><th>बाकी रकम</th><th>जम्मा रकम</th></tr>
+                    <tr><td>${data.R}</td><td>${data.S}</td></tr>
+                `;
+
                     })
                     .catch(error => console.error('Error fetching data:', error));
             }
         }
+
+
+
+
+
+        function populateTable(tableId, tableData) {
+            const table = document.getElementById(tableId);
+            table.innerHTML = ''; // Clear previous data
+            tableData.forEach(row => {
+                let tr = document.createElement('tr');
+                row.forEach(cell => {
+                    let td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                table.appendChild(tr);
+            });
+        }
+
+        document.getElementById('nameDropdown').addEventListener('change', displayData);
+
 
         window.onload = function () {
             populateDropdown();

@@ -43,6 +43,34 @@ body.dark{
 }
 
 
+    /* arrow top  */
+
+.arrowTop{
+    position: fixed;
+    right:30px;
+    bottom: -100%;
+    border: none;
+    border-radius: 18%; 
+    transition: 0.2s ease;
+    z-index: 9999;
+}
+.arrowTop.show{
+    bottom: 100px;
+}
+.slideUp{
+  font-size: 40px;
+  color: var(--text-color);
+  border: none;
+  border-radius: 50%; 
+  background-color: var(--body-color);
+  box-shadow: var(--box-shadow);
+ 
+}
+.slideUp:hover{
+    color: var(--hover-txt-color);
+    box-shadow: var(--box-inset-shadow);
+}
+
 
 
   .header-main a {
@@ -62,7 +90,9 @@ body.dark{
     box-shadow: var(--box-shadow);
     transition: 0.3s ease;
   }
-
+  header.hide{
+    transform: translatey(-100%);
+  }
   nav .nav-logo a{
     color: var(--header);
     background-color: var(--nav-color);
