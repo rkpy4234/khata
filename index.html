@@ -169,6 +169,7 @@
                 <table id="table5" class="table table-hover"
                     style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
                     <!-- Data will be populated here -->
+                     
                 </table>
                 <table id="table6" class="table table-hover"
                     style="border: 1px solid var(--hover-txt-color); margin-top: 20px; font-size: 18px;">
@@ -235,7 +236,7 @@
 
         //for view table
         function populateDropdown() {
-            fetch('https://script.google.com/macros/s/AKfycbxH6Hrt69u0RAbEslQBJ_8L4GSwfDXrMmSRXxw6hGF6wYP9r1FBMdrMpY8_V_L6KU-s/exec')
+            fetch('https://script.google.com/macros/s/AKfycbxTB_RyLYnZEdxvT0uXdn9vh6PUfKU1TLfQ1jRTdxE1oX6hZ8ahmrOeaf_Qwjn_fx3G/exec')
                 .then(response => response.json())
                 .then(data => {
                     const dropdown = document.getElementById('nameDropdown');
@@ -254,7 +255,7 @@
         function displayData() {
             const selectedName = document.getElementById('nameDropdown').value;
             if (selectedName) {
-                fetch(`https://script.google.com/macros/s/AKfycbxH6Hrt69u0RAbEslQBJ_8L4GSwfDXrMmSRXxw6hGF6wYP9r1FBMdrMpY8_V_L6KU-s/exec?name=${encodeURIComponent(selectedName)}`)
+                fetch(`https://script.google.com/macros/s/AKfycbxTB_RyLYnZEdxvT0uXdn9vh6PUfKU1TLfQ1jRTdxE1oX6hZ8ahmrOeaf_Qwjn_fx3G/exec?name=${encodeURIComponent(selectedName)}`)
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('table1').innerHTML = `
@@ -274,8 +275,8 @@
                     <tr><td>${data.N}</td><td>${data.O}</td></tr>
                 `;
                         document.getElementById('table5').innerHTML = `
-                    <tr><th>दिएको मिती </th><th>रकम </th></tr>            
-                    ${data.table5.map(pair => `<tr><td>${pair[0]}</td><td>${pair[1]}</td></tr>`).join('')}
+                    <tr><th>दिएको मिती </th><th>रकम </th><th>ब्याज सहित </th></tr>            
+                    ${data.table5.map(pair => `<tr><td>${pair[0]}</td><td>${pair[1]}</td><td>${pair[2]}</td></tr>`).join('')}
                 `;
                         document.getElementById('table6').innerHTML = `
                     <tr><th>बाकी रकम</th><th>जम्मा रकम</th></tr>
